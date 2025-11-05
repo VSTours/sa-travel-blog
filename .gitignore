@@ -130,6 +130,18 @@ out/
 dist/
 build/
 
+# Admin Panel
+admin/node_modules/
+admin/.next/
+admin/out/
+admin/dist/
+
+# Frontend
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/dist/
+
 # Temp
 tmp/
 temp/
