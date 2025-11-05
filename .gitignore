@@ -1,0 +1,138 @@
+
+# ============================================================================
+# FILE 8: .gitignore
+# ============================================================================
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+.npm/
+.npx/
+
+# IDE and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Browser and Cache Files
+.cache/
+.local/
+.mozilla/
+.config/
+.nvm/
+.rustup/
+.themes/
+.var/
+.wrangler/
+
+# User Directories (should not be in repo)
+Desktop/
+Documents/GitHub/
+Documents/MissNoirex/
+Documents/Swanky/
+Documents/SwankyB/
+Documents/SwankyBoyz/
+Documents/TxTnOtS/
+Documents/Ubani/
+Documents/VSTours/
+Documents/VS_Pilot/Project/
+Downloads/
+Pictures/
+Public/
+AMAASSOC/
+
+# Log Files
+*.log
+*.txt
+netstat_*.txt
+netwatch_*.txt
+
+# Temporary Files
+dist/
+repo/
+projects/
+*_env/
+trusted_domains.txt
+RouterSetup.rsc
+*.deb
+*.exe
+*.img
+*.svg
+*.sh
+*.py
+Unsaved*
+SBZgeh
+SKB.svg
+SWankyCatalogue
+Swanky.sh
+SwankyAutoBlog
+SwankyB/
+SwankyBoyz.py
+pd
+protonvpn-*
+smart-netwatch.sh
+spotifyd/
+swankyboys_*
+vaughn-sterling-app/
+sa-travel-blog/
+
+# Logs
+logs/
+*.log
+
+# Database
+*.db
+*.sqlite
+
+# Node/Frontend
+node_modules/
+.next/
+out/
+dist/
+build/
+
+# Temp
+tmp/
+temp/
+*.tmp
+
+
