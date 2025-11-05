@@ -5,7 +5,7 @@ export default function TravelBlogDeployer() {
   const [step, setStep] = useState('welcome');
   const [userMode, setUserMode] = useState('deploy'); // 'deploy' or 'admin'
   const [dashboardTab, setDashboardTab] = useState('overview');
-  const [config, setConfig] = useState({
+  const [config, setConfig] = useState<any>({
     aiProvider: 'gemini',
     anthropicKey: '',
     geminiKey: '',
@@ -23,7 +23,6 @@ export default function TravelBlogDeployer() {
     hostingProvider: 'vercel',
     vercelToken: '',
     bookingAffiliateId: '',
-    airbnbAffiliateId: '',
     getYourGuideId: '',
     viatorAffiliateId: '',
     emailProvider: 'mailchimp',
@@ -33,7 +32,7 @@ export default function TravelBlogDeployer() {
     notificationEmail: '',
   });
 
-  const [adminData, setAdminData] = useState({
+  const [adminData, setAdminData] = useState<any>({
     recentPosts: [
       { id: 1, title: 'Top 5 Luxury Resorts in Cape Town', status: 'published', views: 1247, revenue: 34.50, date: '2025-01-28' },
       { id: 2, title: 'Hidden Gems: Franschhoek Wine Country', status: 'published', views: 892, revenue: 28.30, date: '2025-01-21' },
@@ -45,7 +44,6 @@ export default function TravelBlogDeployer() {
     monthlyViews: 4521,
     affMetrics: {
       booking: { clicks: 342, conversions: 18, revenue: 487.50, rate: 5.3 },
-      airbnb: { clicks: 218, conversions: 12, revenue: 356.25, rate: 5.5 },
       getyourguide: { clicks: 156, conversions: 8, revenue: 178.40, rate: 5.1 },
       viator: { clicks: 124, conversions: 5, revenue: 142.80, rate: 4.0 },
     },
@@ -54,9 +52,9 @@ export default function TravelBlogDeployer() {
     nextScheduledPost: 'February 11, 2025',
   });
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<any>({});
   const [loading, setLoading] = useState(false);
-  const [notifications, setNotifications] = useState([]);
+  const [notifications, setNotifications] = useState<any>([]);
 
   const steps = [
     'welcome', 'ai-provider', 'api-keys', 'database', 'content-strategy', 'monetization',
@@ -78,7 +76,7 @@ export default function TravelBlogDeployer() {
   };
 
   const validateStep = () => {
-    const newErrors = {};
+    const newErrors: any = {};
     
     if (step === 'ai-provider') {
       if (!config.aiProvider) newErrors.aiProvider = 'Required';
@@ -112,10 +110,10 @@ export default function TravelBlogDeployer() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleInputChange = (field, value) => {
-    setConfig(prev => ({ ...prev, [field]: value }));
+  const handleInputChange = (field: any, value: any) => {
+    setConfig((prev: any) => ({ ...prev, [field]: value }));
     if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: null }));
+      setErrors((prev: any) => ({ ...prev, [field]: null }));
     }
   };
 
@@ -132,11 +130,11 @@ export default function TravelBlogDeployer() {
     }
   };
 
-  const addNotification = (message, type = 'info') => {
+  const addNotification = (message: any, type = 'info') => {
     const id = Date.now();
-    setNotifications(prev => [...prev, { id, message, type }]);
+    setNotifications((prev: any) => [...prev, { id, message, type }]);
     setTimeout(() => {
-      setNotifications(prev => prev.filter(n => n.id !== id));
+      setNotifications((prev: any) => prev.filter((n: any) => n.id !== id));
     }, 4000);
   };
 
@@ -148,7 +146,7 @@ export default function TravelBlogDeployer() {
     }, 1000);
   };
 
-  const InputField = ({ label, field, type = 'text', placeholder, helperText }) => (
+  const InputField = ({ label, field, type = 'text', placeholder, helperText }: any) => (
     <div className="mb-4">
       <label className="block text-sm font-medium text-gray-700 mb-1">
         {label}
@@ -168,7 +166,7 @@ export default function TravelBlogDeployer() {
     </div>
   );
 
-  const SelectField = ({ label, field, options, helperText }) => (
+  const SelectField = ({ label, field, options, helperText }: any) => (
     <div className="mb-4">
       <label className="block text-sm font-medium text-gray-700 mb-1">
         {label}
@@ -182,7 +180,7 @@ export default function TravelBlogDeployer() {
         }`}
       >
         <option value="">Select {label}</option>
-        {options.map(opt => (
+        {options.map((opt: any) => (
           <option key={opt.value} value={opt.value}>{opt.label}</option>
         ))}
       </select>
@@ -223,7 +221,7 @@ export default function TravelBlogDeployer() {
 
           {/* Notifications */}
           <div className="space-y-2 mb-4">
-            {notifications.map(notif => (
+            {notifications.map((notif: any) => (
               <div
                 key={notif.id}
                 className={`p-4 rounded-lg text-white text-sm ${
@@ -573,7 +571,7 @@ export default function TravelBlogDeployer() {
                       <li><strong>GetYourGuide:</strong> 7% commission - Tours & Activities</li>
                       <li><strong>Viator:</strong> 5-10% commission - Local Experiences</li>
                       <li><strong>Booking.com:</strong> 6-8% commission - Hotels</li>
-                      <li><strong>Airbnb:</strong> 8% commission - Unique Stays</li>
+                      <li><strong>Unique stays / alternative accommodation platforms:</strong> 6-8% commission (varies by partner)</li>
                     </ul>
                   </div>
                 </div>
@@ -589,15 +587,7 @@ export default function TravelBlogDeployer() {
                     />
                   </div>
 
-                  <div className="p-4 bg-purple-50 rounded-lg">
-                    <h3 className="font-semibold text-purple-800 mb-2">🏠 Unique Stays</h3>
-                    <InputField
-                      label="Airbnb Affiliate ID"
-                      field="airbnbAffiliateId"
-                      placeholder="Your Airbnb partner code"
-                      helperText="8% commission • Sign up: airbnb.com/associates • Perfect for unique stays"
-                    />
-                  </div>
+                  {/* Unique stays: removed direct Airbnb integration; use Booking.com or other accommodation partners */}
 
                   <div className="p-4 bg-orange-50 rounded-lg">
                     <h3 className="font-semibold text-orange-800 mb-2">🎯 Tours & Activities (Highest Earners)</h3>
@@ -773,9 +763,8 @@ export default function TravelBlogDeployer() {
 
                   <div className="p-4 bg-purple-50 rounded-lg">
                     <h3 className="font-bold text-purple-800 mb-2">Monetization</h3>
-                    <div className="text-sm text-purple-700 space-y-1">
+                      <div className="text-sm text-purple-700 space-y-1">
                       <div>Booking.com: {config.bookingAffiliateId ? '✅ Configured' : '⚪ Not set'}</div>
-                      <div>Airbnb: {config.airbnbAffiliateId ? '✅ Configured' : '⚪ Not set'}</div>
                       <div>GetYourGuide: {config.getYourGuideId ? '✅ Configured' : '⚪ Not set'}</div>
                       <div>Viator: {config.viatorAffiliateId ? '✅ Configured' : '⚪ Not set'}</div>
                       <div>Email Provider: {config.emailProvider || 'Not set'}</div>
@@ -1062,7 +1051,7 @@ export default function TravelBlogDeployer() {
             <div className="admin-card">
               <h3 className="text-lg font-bold text-gray-900 mb-4">Recent Posts</h3>
               <div className="space-y-4">
-                {adminData.recentPosts.map(post => (
+                {adminData.recentPosts.map((post: any) => (
                   <div key={post.id} className="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
                     <div>
                       <h4 className="font-medium text-gray-900">{post.title}</h4>
@@ -1127,7 +1116,7 @@ export default function TravelBlogDeployer() {
                     </tr>
                   </thead>
                   <tbody>
-                    {adminData.recentPosts.map(post => (
+                    {adminData.recentPosts.map((post: any) => (
                       <tr key={post.id} className="border-b border-gray-100 hover:bg-gray-50">
                         <td className="py-3 px-4">
                           <div className="font-medium text-gray-900">{post.title}</div>
@@ -1206,10 +1195,7 @@ export default function TravelBlogDeployer() {
                       <span className="text-gray-600">Booking.com</span>
                       <span className="font-bold text-blue-600">${adminData.affMetrics.booking.revenue}</span>
                     </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-600">Airbnb</span>
-                      <span className="font-bold text-purple-600">${adminData.affMetrics.airbnb.revenue}</span>
-                    </div>
+                    {/* Airbnb removed from UI: revenue rolled into accommodation partners */}
                     <div className="flex justify-between items-center">
                       <span className="text-gray-600">GetYourGuide</span>
                       <span className="font-bold text-orange-600">${adminData.affMetrics.getyourguide.revenue}</span>
@@ -1260,9 +1246,9 @@ export default function TravelBlogDeployer() {
                 <h3 className="text-lg font-bold text-gray-900 mb-4">Top Performing Posts</h3>
                 <div className="space-y-2">
                   {adminData.recentPosts
-                    .sort((a, b) => b.views - a.views)
+                    .sort((a: any, b: any) => b.views - a.views)
                     .slice(0, 3)
-                    .map((post, index) => (
+                    .map((post: any, index: any) => (
                     <div key={post.id} className="flex justify-between items-center py-2">
                       <div className="flex items-center">
                         <span className="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded mr-2">
@@ -1292,7 +1278,7 @@ export default function TravelBlogDeployer() {
 
             {/* Affiliate Performance Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {Object.entries(adminData.affMetrics).map(([network, metrics]) => (
+              {Object.entries(adminData.affMetrics).map(([network, metrics]: any) => (
                 <div key={network} className="admin-card">
                   <div className="flex justify-between items-start mb-3">
                     <h3 className="font-bold text-gray-900 capitalize">{network}</h3>
@@ -1356,18 +1342,7 @@ export default function TravelBlogDeployer() {
                         </span>
                       </td>
                     </tr>
-                    <tr className="border-b border-gray-100">
-                      <td className="py-3 px-4 font-medium text-purple-600">Airbnb</td>
-                      <td className="py-3 px-4 text-gray-600">Franschhoek Wine Country</td>
-                      <td className="py-3 px-4">89</td>
-                      <td className="py-3 px-4">5</td>
-                      <td className="py-3 px-4 font-bold text-green-600">$356.25</td>
-                      <td className="py-3 px-4">
-                        <span className="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">
-                          Active
-                        </span>
-                      </td>
-                    </tr>
+                    {/* Airbnb rows removed — platform deprecated from affiliate options */}
                     <tr className="border-b border-gray-100">
                       <td className="py-3 px-4 font-medium text-orange-600">GetYourGuide</td>
                       <td className="py-3 px-4 text-gray-600">Safari Luxury Guide</td>

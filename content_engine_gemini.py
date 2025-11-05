@@ -39,7 +39,7 @@ Requirements:
 2. SEO optimized with H2/H3 headers
 3. Engaging introduction and conclusion
 4. Include 5-7 naturally integrated affiliate recommendations for:
-   - Hotels/accommodation (Booking.com or Airbnb)
+    - Hotels/accommodation (Booking.com or other accommodation platforms)
    - Tours/activities (GetYourGuide or Viator)
 5. Include practical information and insider tips
 6. Professional tone for luxury audience

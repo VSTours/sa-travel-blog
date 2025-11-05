@@ -277,12 +277,8 @@ class CliSetup:
             self.github_secrets['BOOKING_AFFILIATE_ID'] = booking
             print_success("Booking.com configured")
         
-        print_step("Airbnb Affiliate (optional)")
-        airbnb = self.prompt("Airbnb Affiliate ID", password=True)
-        if airbnb:
-            self.config['AIRBNB_AFFILIATE_ID'] = airbnb
-            self.github_secrets['AIRBNB_AFFILIATE_ID'] = airbnb
-            print_success("Airbnb configured")
+    # Airbnb affiliate support removed — prefer Booking.com or other accommodation partners
+    # If you have other accommodation partner IDs, add them to BOOKING_AFFILIATE_ID or configure custom affiliates in the dashboard.
         
         print_step("GetYourGuide Affiliate (optional - HIGHEST EARNER for tours)")
         gyg = self.prompt("GetYourGuide Affiliate ID", password=True)
@@ -375,7 +371,6 @@ MONTHLY_POSTS={}
 # Monetization
 GOOGLE_ADSENSE_ID={}
 BOOKING_AFFILIATE_ID={}
-AIRBNB_AFFILIATE_ID={}
 GETYOURGUIDE_AFFILIATE_ID={}
 VIATOR_AFFILIATE_ID={}
 
@@ -414,7 +409,6 @@ SECRET_KEY=your-secret-key-change-this
             self.config.get('MONTHLY_POSTS', ''),
             self.config.get('GOOGLE_ADSENSE_ID', ''),
             self.config.get('BOOKING_AFFILIATE_ID', ''),
-            self.config.get('AIRBNB_AFFILIATE_ID', ''),
             self.config.get('GETYOURGUIDE_AFFILIATE_ID', ''),
             self.config.get('VIATOR_AFFILIATE_ID', ''),
             self.config.get('EMAIL_PROVIDER', ''),
@@ -471,8 +465,7 @@ SECRET_KEY=your-secret-key-change-this
             revenue_streams.append("Google AdSense")
         if self.config.get('BOOKING_AFFILIATE_ID'):
             revenue_streams.append("Booking.com")
-        if self.config.get('AIRBNB_AFFILIATE_ID'):
-            revenue_streams.append("Airbnb")
+    # Airbnb option removed from configuration
         if self.config.get('GETYOURGUIDE_AFFILIATE_ID'):
             revenue_streams.append("GetYourGuide")
         if self.config.get('VIATOR_AFFILIATE_ID'):
@@ -1089,7 +1082,7 @@ class AffiliateAccount(Base):
     __tablename__ = "affiliate_accounts"
     
     id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
-    network = Column(String(100), nullable=False)  # booking, airbnb, getyourguide, viator
+  network = Column(String(100), nullable=False)  # booking, getyourguide, viator, accommodation_partner
     affiliate_id = Column(String(255), nullable=False)
     api_key = Column(String(500), nullable=True)
     is_active = Column(Boolean, default=True)
@@ -1153,7 +1146,7 @@ MAILCHIMP_LIST_ID=xxxxx
 # Monetization
 GOOGLE_ADSENSE_ID=ca-pub-xxxxx
 BOOKING_AFFILIATE_ID=xxxxx
-AIRBNB_AFFILIATE_ID=xxxxx
+# AIRBNB_AFFILIATE_ID removed (use BOOKING_AFFILIATE_ID or custom affiliate configs)
 GETYOURGUIDE_AFFILIATE_ID=xxxxx
 VIATOR_AFFILIATE_ID=xxxxx
 
@@ -1748,7 +1741,7 @@ Create `DEPLOYMENT_CHECKLIST.md`:
 
 ## Affiliate Networks ✅
 - [ ] Booking.com affiliate ID added
-- [ ] Airbnb affiliate ID added
+- [ ] Airbnb affiliate ID removed / replaced by accommodation partner settings
 - [ ] GetYourGuide affiliate ID added
 - [ ] Viator affiliate ID added
 
@@ -1986,7 +1979,7 @@ PostgreSQL Database (Supabase)
     ↓
 Email Service (Mailchimp/Gmail)
     ↓
-Affiliate Networks (Booking, Airbnb, GetYourGuide, Viator)
+Affiliate Networks (Booking, GetYourGuide, Viator, accommodation partners)
 ```
 
 ## Revenue Model
@@ -2223,7 +2216,7 @@ def test_affiliate_performance():
     assert response.status_code == 200
     data = response.json()
     assert "booking" in data
-    assert "airbnb" in data
+  # Airbnb-specific assertion removed — use accommodation partner keys if present
     assert "getyourguide" in data
     assert "viator" in data
 ```
