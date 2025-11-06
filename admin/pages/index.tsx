@@ -1,6 +1,6 @@
 import React from 'react';
-import TravelBlogDeployer from '../components/TravelBlogDeployer';
+import AdminDashboard from '../components/AdminDashboard';
 
 export default function AdminPage() {
-  return <TravelBlogDeployer />;
+  return <AdminDashboard />;
 }
