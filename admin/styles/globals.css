@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom admin styles */
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900;
+  }
+}
+
+@layer components {
+  .admin-card {
+    @apply bg-white rounded-xl shadow-sm border border-gray-200 p-6;
+  }
+  
+  .admin-button {
+    @apply px-4 py-2 rounded-lg font-medium transition-colors duration-200;
+  }
+  
+  .admin-button-primary {
+    @apply admin-button bg-admin-primary text-white hover:bg-blue-700;
+  }
+  
+  .admin-button-secondary {
+    @apply admin-button bg-gray-200 text-gray-800 hover:bg-gray-300;
+  }
+  
+  .admin-input {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-admin-primary focus:border-transparent outline-none;
+  }
+  
+  .admin-input-error {
+    @apply border-admin-danger focus:ring-admin-danger;
+  }
+}
+
+@layer utilities {
+  .gradient-admin {
+    @apply bg-gradient-to-br from-admin-primary via-admin-secondary to-teal-600;
+  }
+}

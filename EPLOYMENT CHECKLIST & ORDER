@@ -1,0 +1,66 @@
+
+
+# ============================================================================
+# DEPLOYMENT CHECKLIST & ORDER
+# ============================================================================
+
+"""
+DEPLOYMENT ORDER (Follow this exactly):
+
+STEP 1: Setup Files & Dependencies
+├─ 1. Create backend/requirements.txt
+├─ 2. Create backend/.env (with your keys)
+├─ 3. Create backend/services/content_engine_gemini.py
+├─ 4. Create backend/services/email_service_zoho.py
+├─ 5. Create backend/models.py
+├─ 6. Create backend/database.py
+├─ 7. Create backend/main.py
+└─ 8. Create .gitignore
+
+STEP 2: Install Dependencies
+├─ 1. pip install -r backend/requirements.txt
+└─ 2. Test: python -c "import google.generativeai; print('✅ Gemini works')"
+
+STEP 3: Test Locally
+├─ 1. Run: docker-compose up
+├─ 2. Visit: http://localhost:3000 (frontend)
+├─ 3. Visit: http://localhost:8000/health (API)
+└─ 4. Test: POST http://localhost:8000/api/posts/generate?topic=Cape%20Town
+
+STEP 4: Deploy to GitHub
+├─ 1. git add .
+├─ 2. git commit -m "Initial deployment"
+├─ 3. git push -u origin main
+└─ 4. Add .env to GitHub Secrets (all values)
+
+STEP 5: Deploy Frontend (Vercel)
+├─ 1. cd frontend
+├─ 2. vercel --prod
+├─ 3. Link to GitHub repo
+└─ 4. Set environment variables in Vercel dashboard
+
+STEP 6: Deploy Backend (Railway/Render)
+├─ 1. Create account at railway.app or render.com
+├─ 2. Connect GitHub repo
+├─ 3. Set environment variables
+├─ 4. Deploy
+└─ 5. Copy backend URL
+
+STEP 7: Update Vercel Environment
+├─ 1. Vercel dashboard → Settings → Environment Variables
+├─ 2. Set: NEXT_PUBLIC_API_URL = https://your-backend.railway.app
+└─ 3. Redeploy frontend
+
+STEP 8: Verify Deployment
+├─ 1. Visit: https://yourblog.vercel.app
+├─ 2. Visit: https://yourblog.vercel.app/health
+├─ 3. Test email signup
+└─ 4. Generate test post
+
+ALL DONE! 🎉
+
+YOUR BLOG IS LIVE:
+- Frontend: https://yourblog.vercel.app
+- API: https://your-backend.railway.app
+- Dashboard: https://yourblog.vercel.app/admin
+"""

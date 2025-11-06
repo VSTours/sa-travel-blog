@@ -1,0 +1,19 @@
+{
+  "name": "sa-travel-blog-backend",
+  "description": "AI-powered travel blog backend with multi-provider support",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "deploy": {
+    "healthcheckPath": "/health",
+    "restartPolicyType": "ON_FAILURE"
+  },
+  "environments": {
+    "production": {
+      "variables": {
+        "ENVIRONMENT": "production",
+        "DEBUG": "False"
+      }
+    }
+  }
+}

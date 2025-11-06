@@ -1,0 +1,65 @@
+
+# ============================================================================
+# FILE 10: docker-compose.yml
+# ============================================================================
+"""
+Location: docker-compose.yml
+Purpose: Local development with Docker
+"""
+
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: travel_blog_db
+    environment:
+      POSTGRES_USER: travel_user
+      POSTGRES_PASSWORD: travel_password
+      POSTGRES_DB: travel_blog
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U travel_user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+    container_name: travel_blog_backend
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://travel_user:travel_password@postgres:5432/travel_blog
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+      UNSPLASH_API_KEY: ${UNSPLASH_API_KEY}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: travel_blog_frontend
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://backend:8000
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+    command: npm run dev
+
+volumes:
+  postgres_data:
+
+
+
