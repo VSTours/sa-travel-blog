@@ -1,0 +1,113 @@
+/* Luxury Travel Blog Admin - Premium Styling */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+:root {
+  --luxury-gold: #d4af37;
+  --luxury-dark-gold: #b8941f;
+  --luxury-cream: #faf9f6;
+  --luxury-charcoal: #2d3748;
+  --luxury-silver: #e2e8f0;
+  --luxury-bronze: #cd7f32;
+}
+
+* {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.luxury-heading {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+.luxury-card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(226, 232, 240, 0.5);
+  box-shadow: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.luxury-button {
+  background: linear-gradient(135deg, var(--luxury-gold) 0%, var(--luxury-dark-gold) 100%);
+  box-shadow: 
+    0 10px 15px -3px rgba(212, 175, 55, 0.3),
+    0 4px 6px -2px rgba(212, 175, 55, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.luxury-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 20px 25px -5px rgba(212, 175, 55, 0.4),
+    0 10px 10px -5px rgba(212, 175, 55, 0.3);
+}
+
+.luxury-input {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  transition: all 0.3s ease;
+}
+
+.luxury-input:focus {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: var(--luxury-gold);
+  box-shadow: 
+    0 0 0 3px rgba(212, 175, 55, 0.1),
+    0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.luxury-nav-tab {
+  position: relative;
+  overflow: hidden;
+}
+
+.luxury-nav-tab::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.luxury-nav-tab:hover::before {
+  left: 100%;
+}
+
+.animate-luxury-pulse {
+  animation: luxuryPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes luxuryPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.luxury-gradient-text {
+  background: linear-gradient(135deg, var(--luxury-gold) 0%, var(--luxury-bronze) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.luxury-glassmorphism {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}

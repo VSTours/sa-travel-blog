@@ -1,1 +1,90 @@
+# ============================================================================
+# LUXURY TRAVEL BLOG PLATFORM - .gitignore
+# ============================================================================
+
+# Environment Files
+.env
+.env.local
+.env.*.local
 backend/.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+.npm/
+.npx/
+
+# IDE and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Database
+*.db
+*.sqlite
+
+# Node/Frontend
+node_modules/
+.next/
+out/
+dist/
+build/
+
+# Admin Panel
+admin/node_modules/
+admin/.next/
+admin/out/
+admin/dist/
+
+# Frontend/Blog
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/dist/
+blog/node_modules/
+blog/.next/
+blog/out/
+blog/dist/
+
+# Logs
+logs/
+*.log
+
+# Temp
+tmp/
+temp/
+*.tmp

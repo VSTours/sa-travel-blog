@@ -1,0 +1,28 @@
+
+# ============================================================================
+# FILE 9: vercel.json
+# ============================================================================
+"""
+Location: vercel.json
+Purpose: Vercel deployment configuration
+"""
+
+{
+  "version": 2,
+  "buildCommand": "cd frontend && npm run build",
+  "installCommand": "npm install && cd frontend && npm install",
+  "outputDirectory": "frontend/.next",
+  "env": {
+    "NEXT_PUBLIC_API_URL": "@api_url",
+    "DATABASE_URL": "@database_url"
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "frontend/$1"
+    }
+  ]
+}
+
+
+
