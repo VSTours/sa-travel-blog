@@ -110,37 +110,42 @@ function generatePrompt(request: ContentRequest): string {
   if (request.affiliate_preferences.getyourguide) affiliateLinks.push('GetYourGuide')
   if (request.affiliate_preferences.viator) affiliateLinks.push('Viator')
   
-  return `Create a comprehensive travel blog post about ${request.destination}.
+  return `Create an exceptional luxury travel article about ${request.destination}.
 
-Content Type: ${request.content_type}
+Content Category: ${request.content_type}
+Target Audience: Affluent travelers seeking premium experiences
+Tone: Sophisticated, elegant, and aspirational
 
-Requirements:
-1. Write an engaging, informative article about ${request.destination}
-2. Include practical travel tips and insider information
-3. Structure with clear headings and sections
-4. Include mentions of activities that could link to: ${affiliateLinks.join(', ')}
-5. Write in an authentic, personal tone as if from an experienced traveler
-6. Include SEO-friendly content with natural keyword placement
-7. Suggest specific accommodations, tours, and activities
-8. Add practical details like best time to visit, budget tips, etc.
+Premium Content Requirements:
+1. Write a captivating, sophisticated article showcasing the finest aspects of ${request.destination}
+2. Focus exclusively on luxury experiences, high-end accommodations, and premium services
+3. Include insider access tips and exclusive experiences only available to discerning travelers
+4. Structure with elegant headings and refined sections that flow seamlessly
+5. Seamlessly integrate premium offerings from: ${affiliateLinks.join(', ')}
+6. Write in a refined, authoritative tone befitting luxury travel connoisseurs
+7. Include sophisticated SEO optimization for luxury travel keywords
+8. Recommend only 5-star accommodations, private tours, and exclusive experiences
+9. Add premium details: private transfers, concierge services, exclusive dining, VIP access
+10. Emphasize personalized service, exceptional quality, and unforgettable moments
 
-Format the response as JSON with these fields:
+Format the response as JSON with these luxury-focused fields:
 {
-  "title": "SEO optimized title",
-  "excerpt": "Brief 150 character summary",
-  "content": "Full HTML formatted article content",
+  "title": "Elegant, SEO-optimized title emphasizing luxury and exclusivity",
+  "excerpt": "Sophisticated 150-character summary highlighting premium experiences",
+  "content": "Beautifully formatted HTML article content with luxury focus and premium imagery suggestions",
   "seo_meta": {
-    "description": "Meta description for SEO",
-    "keywords": ["keyword1", "keyword2", "keyword3"]
+    "description": "Premium meta description targeting luxury travel searches",
+    "keywords": ["luxury travel", "premium experiences", "${request.destination}", "exclusive", "high-end", "luxury accommodation"]
   },
   "affiliate_opportunities": {
-    "accommodations": ["suggestion 1", "suggestion 2"],
-    "activities": ["activity 1", "activity 2"],
-    "tours": ["tour 1", "tour 2"]
+    "luxury_accommodations": ["5-star hotel suggestions", "luxury resort recommendations"],
+    "premium_experiences": ["VIP tours", "exclusive access opportunities"],
+    "fine_dining": ["Michelin-starred restaurants", "exclusive culinary experiences"],
+    "private_services": ["private transfers", "personal concierge services"]
   }
 }
 
-Make sure the content is original, engaging, and provides real value to travelers planning a trip to ${request.destination}.`
+Make the content sophisticated, aspirational, and worthy of the world's most discerning travelers. Focus on exclusivity, quality, and unforgettable luxury experiences in ${request.destination}.`
 }
 
 serve(async (req: any) => {
