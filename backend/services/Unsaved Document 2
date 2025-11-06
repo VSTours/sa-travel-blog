@@ -1,0 +1,31 @@
+# 1. Deactivate the current virtual environment
+deactivate
+
+# 2. Remove the old venv
+rm -rf venv
+
+# 3. Check what Python versions you have available
+ls /usr/bin/python3*
+
+# 4. Create a new venv with Python 3.8 or newer
+# Try these in order until one works:
+
+python3.10 -m venv venv
+# OR
+
+# 5. Activate the new venv
+source venv/bin/activate
+
+# 6. Verify you have the right Python version (should be 3.8+)
+python --version
+
+# 7. Upgrade pip
+pip install --upgrade pip
+
+# 8. Install dependencies
+pip install -r backend/requirements.txt
+
+# 9. Verify installations
+python -c "import google.generativeai; print('✅ Gemini OK')"
+python -c "import sqlalchemy; print('✅ SQLAlchemy OK')"
+python -c "import fastapi; print('✅ FastAPI OK')"
