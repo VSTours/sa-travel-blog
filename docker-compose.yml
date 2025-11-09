@@ -55,7 +55,7 @@ services:
       - backend
     volumes:
       - ./frontend:/app
-    command: npm run dev
+    command: npm run deva571c10f5db08c19b3f63ed5ce44e132-us9
 
 volumes:
   postgres_data:
