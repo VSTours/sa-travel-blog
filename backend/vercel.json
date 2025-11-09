@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "main.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "main.py"
+    }
+  ],
+  "env": {
+    "GEMINI_API_KEY": "@gemini_api_key",
+    "UNSPLASH_API_KEY": "@unsplash_api_key",
+    "PEXELS_API_KEY": "@pexels_api_key",
+    "DATABASE_URL": "@database_url",
+    "EMAIL_PROVIDER": "@email_provider",
+    "EMAIL_API_KEY": "@email_api_key",
+    "NICHE": "@niche",
+    "TARGET_MARKET": "@target_market",
+    "REGION": "@region"
+  }
+}

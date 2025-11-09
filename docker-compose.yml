@@ -1,12 +1,4 @@
 
-# ============================================================================
-# FILE 10: docker-compose.yml
-# ============================================================================
-"""
-Location: docker-compose.yml
-Purpose: Local development with Docker
-"""
-
 version: '3.8'
 
 services:
@@ -14,18 +6,19 @@ services:
     image: postgres:15-alpine
     container_name: travel_blog_db
     environment:
-      POSTGRES_USER: travel_user
-      POSTGRES_PASSWORD: travel_password
-      POSTGRES_DB: travel_blog
+      POSTGRES_USER: ${DB_USER:-travel_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-travel_password}
+      POSTGRES_DB: ${DB_NAME:-travel_blog}
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U travel_user"]
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-travel_user}"]
       interval: 10s
       timeout: 5s
       retries: 5
+    restart: unless-stopped
 
   backend:
     build:
@@ -34,15 +27,21 @@ services:
     ports:
       - "8000:8000"
     environment:
-      DATABASE_URL: postgresql://travel_user:travel_password@postgres:5432/travel_blog
-      GEMINI_API_KEY: ${GEMINI_API_KEY}
+      DATABASE_URL: postgresql://${DB_USER:-travel_user}:${DB_PASSWORD:-travel_password}@postgres:5432/${DB_NAME:-travel_blog}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
       UNSPLASH_API_KEY: ${UNSPLASH_API_KEY}
+      PEXELS_API_KEY: ${PEXELS_API_KEY}
+      EMAIL_PROVIDER: ${EMAIL_PROVIDER:-mailchimp}
+      EMAIL_API_KEY: ${EMAIL_API_KEY}
+      NICHE: ${NICHE:-luxury-resorts}
+      TARGET_MARKET: ${TARGET_MARKET:-US-millennial}
+      REGION: ${REGION:-Cape-Town}
     depends_on:
-      postgres:
-        condition: service_healthy
+      - postgres
     volumes:
       - ./backend:/app
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    restart: unless-stopped
 
   frontend:
     build:
